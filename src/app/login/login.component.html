@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="border w-25 p-4 bg-primary-subtle rounded shadow">
+    <h3 class="mb-4">Login Portal</h3>
+    <form [formGroup]="loginForm">
+      <div class="mb-3">
+        <label for="username" class="form-label">Name</label>
+        <input type="text" formControlName="username" class="form-control" value="admin" id="username">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" value="admin" id="password">
+      </div>
+      <div>
+        <label for="password" class="form-label">Login Type</label>
+        <select formControlName="type" id="type" class="form-select mb-4">
+          <option value="admin" selected>Admin</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="login()">Submit</button>
+    </form>
+  </div>
+</div>

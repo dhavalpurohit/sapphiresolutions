@@ -1,0 +1,74 @@
+<div class="p-4">
+  <div class="d-flex w-100">
+    <h2>List</h2>
+    <button type="button" *ngIf="type == 'admin'" class=" btn btn-primary ms-auto" data-bs-toggle="modal"
+      data-bs-target="#addList">Add
+      List</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Age</th>
+          <th scope="col" *ngIf="type == 'admin'">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dataList; index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{data.name}}</td>
+          <td>{{data.email}}n</td>
+          <td>{{data.phone}}</td>
+          <td>{{data.age}}</td>
+          <td *ngIf="type == 'admin'">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addList"
+              (click)="edit(data)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button type="button" class="btn btn-danger ms-2" (click)="delete(data.id)">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="addList" tabindex="-1" aria-labelledby="addListLabel" aria-hidden="true">
+  <div class="modal-dialog-centered modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addListLabel">Add List</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addListForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control" value="name" id="name">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" formControlName="email" class="form-control" value="admin" id="email">
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="phone" formControlName="phone" class="form-control" value="admin" id="phone">
+          </div>
+          <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" formControlName="age" class="form-control" value="admin" id="age">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addListFun()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
